@@ -1,6 +1,10 @@
 import * as WebSocket from "ws";
+import { eventNames } from "cluster";
 
-const wss = new WebSocket.Server({ port: 3000, clientTracking: true });
+const wss = new WebSocket.Server({ port: parseInt(process.env.PORT), clientTracking: true }, () => {
+  console.log("Server running on port: ", process.env.PORT);
+});
+
 const clients = [];
 wss.on("connection", ws => {
   clients.push(ws);
