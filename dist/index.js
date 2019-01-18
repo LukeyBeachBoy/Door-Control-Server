@@ -10,6 +10,9 @@ wss.on("connection", ws => {
         if (message == "unlock") {
             console.log("Sending door unlock request");
         }
+        else if (message == "ping") {
+            ws.send('pong');
+        }
         else {
             console.log("Sending door lock request");
         }
