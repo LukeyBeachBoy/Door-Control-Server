@@ -1,7 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const WebSocket = require("ws");
-const wss = new WebSocket.Server({ port: 3000, clientTracking: true });
+const PORT = process.env.PORT || 3000;
+const wss = new WebSocket.Server({ port: PORT, clientTracking: true }, () => {
+    console.log(`Server running on port ${PORT}`);
+});
 const clients = [];
 wss.on("connection", ws => {
     clients.push(ws);
